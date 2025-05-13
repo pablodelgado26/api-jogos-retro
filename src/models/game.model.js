@@ -14,6 +14,15 @@ class GameModel {
             games,
         }
     }
+
+    /* Criar um novo jogo */
+    async create(data) {
+        const game = await prisma.game.create({
+            data,
+        });
+
+        return game;
+    }
 }
 
 export default new GameModel();
