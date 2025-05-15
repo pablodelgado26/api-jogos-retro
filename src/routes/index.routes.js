@@ -11,11 +11,11 @@ const router = express.Router();
 
 //Rotas públicas
 router.use("/auth", authRouter);
+router.use("/record", recordRouter);
+router.use("/game", gameRouter);
 
 //Rotas protegidas
 router.use(authMiddleware)
-router.use("/record", recordRouter);
-router.use("/game", gameRouter);
 
 
 export default router

@@ -2,11 +2,27 @@ import prisma from "../../prisma/prisma.js";
 
 class GameModel {
     /* Obter todos os jogos */
-    async findAll() {
+    async findAll(name, platforms) {
+
+        const where = {};
+
+        if (name) {
+            where.name = {
+                contains: name,
+            };
+        }
+
+        if (platforms) {
+            where.platforms = {
+                contains: platforms,
+            };
+        }
+
         const games = await prisma.game.findMany({
             orderBy: {
                 createdAt: "desc",
             },
+            where,
         });
 
         return {
